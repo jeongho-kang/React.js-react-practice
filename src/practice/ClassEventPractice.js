@@ -3,10 +3,11 @@ import React, { Component } from 'react'
 class EventPractice extends Component {
 
 state = {
-    message : ' '
+    username : '',
+    message:''
 }
 
-
+    /*
     constructor(props) {
         super(props)
         //this 는 호출부에 의해 결정되므로 클래스의 임의 메서드가 특정 html요소를
@@ -16,17 +17,23 @@ state = {
         this.handleChange = this.handleChange.bind(this)
         this.handleclick = this.handleclick.bind(this)
     }
-
-    handleChange(e) {
+    */
+    handleChange = (e) => { 
         this.setState({
-            message : e.target.value
+            [e.target.name] : e.target.value
         })
     }
-    handleclick() {
-        alert(this.state.message)
+    handleclick= () => {
+        alert(this.state.message + ' : ' + this.state.username)
         this.setState({
-            message: ''
+            username: '',
+            massage: ''
         })
+    }
+    handleKeyPress = (e) => {
+        if(e.key==='Enter') {
+            this.handleclick();
+        }
     }
 
 
@@ -34,12 +41,20 @@ state = {
         return(
             <div>
                 <h1>이벤트 연습</h1>
+                <input 
+                type = "text"
+                name = "username"
+                placeholder='사용자 이름'
+                value={this.state.username}
+                onChange={this.handleChange}
+                />
                 <input
                 type="text"
                 name = "message"
                 placeholder='아무거나 입력해 보세요'
                 value={this.state.message}
-                change={this.handleChange}
+                onChange={this.handleChange}
+                onKeyPress={this.handleKeyPress}
                 />
                 {/* 입력한 값이 state에 잘 들어갔는지 검증하는 코드 */}
                 <button onClick={this.handleclick}>확인</button>
