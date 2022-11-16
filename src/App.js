@@ -1,36 +1,18 @@
-import React, { Component } from "react";
-//import IterationSample from "./practice/IterationSample";
-// import ScrollBox from './practice/ScrollBox';
-import LifeCycleSample from "./practice/LifeCycleSample";
+import React, { useState } from 'react'
+import Info from './HookTutorial/Info'
 
-function getRandomColor() {
-  return '#' + Math.floor(Math.random() * 16777215).toString(16)
+const App = () => {
+  const [visible, setVisible] = useState(false)
+  return (
+    <div>
+      <button onClick={() => {
+        setVisible(!visible)
+      }}>{visible? '숨기기' : '보이기' }</button>
+      <hr/>
+      {visible && <Info/>}
+    
+  </div>
+  )
 }
 
-
-class App extends Component {
-  state = {
-    color: '#000000'
-  }
-  handleClick = () => {
-    this.setState({
-      color : getRandomColor()
-    })
-  }
-
-  render() {
-    return (
-      /*<div>
-       <ScrollBox ref={(ref) => {this.ScrollBox=ref}}/>
-       <button onClick={() => this.ScrollBox.ScrollToBottom()}>맨 밑으로</button>
-    </div>*/
-      <>
-        <div>
-          <button onClick={this.handleClick}>랜덤 색상</button>
-          <LifeCycleSample color={this.state.color} />
-        </div>
-      </>
-    );
-  }
-}
-export default App;
+export default App
