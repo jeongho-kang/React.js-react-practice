@@ -1,12 +1,18 @@
-import React from "react";
-import Average from "./HookTutorial/Average";
+import React , {Component} from "react";
+import CSSModule from "./CSSModule";
 
-const App = () => {
+class App extends Component {
+  render() {
+    return(
+      <div>
+        <CSSModule />
+      </div>
+    )
+  }
+}
 
-    return <Average />
-};
+export default App
 
-export default App;
 
 /* 숨기기 보이기
 const [visible, setVisible] = useState(false)
